@@ -6,6 +6,7 @@ import { FoodList } from "./FoodList";
 import { SearchTextField } from "./SearchTextField";
 import { NutrientList } from "./NutrientList";
 import { EditPlan } from "./EditPlan";
+import { Container } from "./Container";
 
 export type AppProps = {
   theme: Theme;
@@ -18,10 +19,12 @@ export const App = ({ theme }: AppProps) => (
   <StyledThemeProvider theme={theme}>
     <MuiThemeProvider theme={theme}>
       <GlobalStyle />
-      <SearchTextField>{() => <FoodList variant="add" />}</SearchTextField>
-      <FoodList />
-      <NutrientList />
-      <EditPlan />
+      <Container>
+        <SearchTextField>{() => <FoodList variant="add" />}</SearchTextField>
+        <FoodList />
+        <NutrientList />
+        <EditPlan />
+      </Container>
     </MuiThemeProvider>
   </StyledThemeProvider>
 );
