@@ -1,14 +1,20 @@
 import { GlobalStyle } from "./GlobalStyle";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { Theme } from "../Theme";
+import { MuiThemeProvider, Typography } from "@material-ui/core";
 
 export type AppProps = {
   theme: Theme;
 };
 
+/**
+ * The root of the react application.
+ */
 export const App = ({ theme }: AppProps) => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    Nutrition Planner
-  </ThemeProvider>
+  <StyledThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Typography>Nutrition Planner</Typography>
+    </MuiThemeProvider>
+  </StyledThemeProvider>
 );
