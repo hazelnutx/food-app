@@ -7,6 +7,9 @@ export type AppProps = {
   theme: Theme;
 };
 
+/**
+ * The root of the react application.
+ */
 export const App = ({ theme }: AppProps) => (
   <StyledThemeProvider theme={theme}>
     <MuiThemeProvider theme={theme}>

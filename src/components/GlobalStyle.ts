@@ -1,5 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
+/**
+ * Global styles, settings default colors, resetting page padding/margins.
+ * Should only be rendered once.
+ */
 export const GlobalStyle = createGlobalStyle`
   html, body {
     padding: 0;
