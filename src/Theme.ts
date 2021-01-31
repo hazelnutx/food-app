@@ -1,6 +1,3 @@
-import { CSSProperties } from "styled-components";
+import { Theme as MuiTheme } from "@material-ui/core";
 
-export type Theme = {
-  backgroundColor: CSSProperties["color"];
-  textColor: CSSProperties["color"];
-};
+export type Theme = MuiTheme;
