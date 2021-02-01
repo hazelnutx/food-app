@@ -2,8 +2,10 @@ import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { Theme } from "../Theme";
 import {
+  IconButton,
   List,
   ListItem,
+  ListItemSecondaryAction,
   ListItemText,
   MuiThemeProvider,
 } from "@material-ui/core";
@@ -12,8 +14,9 @@ import { NutrientList } from "./NutrientList";
 import { EditPlan } from "./EditPlan";
 import { Container } from "./Container";
 import { SearchResults } from "./SearchResults";
-import { useState } from "react";
 import { Food } from "../state/Food";
+import { Delete as DeleteIcon } from "@material-ui/icons";
+import { useUniqueContainer } from "../hooks/useUniqueContainer";
 
 export type AppProps = {
   theme: Theme;
@@ -24,8 +27,7 @@ export type AppProps = {
  * The root of the react application.
  */
 export const App = ({ theme, search }: AppProps) => {
-  const [myFood, setMyFood] = useState<Food[]>([]);
-  const addFood = (food: Food) => setMyFood([...myFood, food]);
+  const [myFood, addFood, removeFood] = useUniqueContainer<Food>();
   return (
     <StyledThemeProvider theme={theme}>
       <MuiThemeProvider theme={theme}>
@@ -46,9 +48,18 @@ export const App = ({ theme, search }: AppProps) => {
             )}
           </SearchInput>
           <List>
-            {myFood.map(({ name }, index) => (
+            {myFood.map((food, index) => (
               <ListItem key={index}>
-                <ListItemText primary={name} />
+                <ListItemText primary={food.name} />
+                <ListItemSecondaryAction>
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    onClick={() => removeFood(food)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </ListItemSecondaryAction>
               </ListItem>
             ))}
           </List>
