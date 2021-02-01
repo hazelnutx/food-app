@@ -26,7 +26,7 @@ export const App = ({ theme, search }: AppProps) => {
       <MuiThemeProvider theme={theme}>
         <GlobalStyle />
         <Container>
-          <SearchInput label="Enter food or brand" search={search}>
+          <SearchInput label="Search food or brand" search={search}>
             {({ closePopper, clearInput, ...props }) => (
               <SearchResults
                 {...props}
