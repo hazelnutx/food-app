@@ -14,9 +14,9 @@ import { NutrientList } from "./NutrientList";
 import { EditPlan } from "./EditPlan";
 import { Container } from "./Container";
 import { SearchResults } from "./SearchResults";
-import { Food } from "../state/Food";
 import { Delete as DeleteIcon } from "@material-ui/icons";
 import { useUniqueContainer } from "../hooks/useUniqueContainer";
+import { isFoodEqual } from "../functions/isFoodEqual";
 
 export type AppProps = {
   theme: Theme;
@@ -27,7 +27,7 @@ export type AppProps = {
  * The root of the react application.
  */
 export const App = ({ theme, search }: AppProps) => {
-  const [myFood, addFood, removeFood] = useUniqueContainer<Food>();
+  const [myFood, addFood, removeFood] = useUniqueContainer([], isFoodEqual);
   return (
     <StyledThemeProvider theme={theme}>
       <MuiThemeProvider theme={theme}>

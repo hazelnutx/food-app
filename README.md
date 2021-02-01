@@ -14,6 +14,7 @@ Notable files and folders and what their purpose is.
 - `src/api` API types and functions
 - `src/components` react components
 - `src/fixtures` static data
+- `src/functions` pure functions, often helpers to derive or operate on state
 - `src/hooks` react hooks
 - `src/state` types and classes used as application state
 - `src/types` typescript declaration files
