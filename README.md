@@ -6,6 +6,18 @@ An app that helps you find food that fits your desired diet and summarize their 
 - Nutrients
 - Plans
 
+# Project structure
+Notable files and folders and what their purpose is.
+> For more information about a file see the comments in the file
+
+- `src/index.tsx` application entry point
+- `src/api` API types and functions
+- `src/components` react components
+- `src/fixtures` static data
+- `src/hooks` react hooks
+- `src/state` types and classes used as application state
+- `src/types` typescript declaration files
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
