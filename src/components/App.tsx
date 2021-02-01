@@ -1,22 +1,15 @@
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { Theme } from "../Theme";
-import {
-  IconButton,
-  List,
-  ListItem,
-  ListItemSecondaryAction,
-  ListItemText,
-  MuiThemeProvider,
-} from "@material-ui/core";
+import { MuiThemeProvider } from "@material-ui/core";
 import { SearchInput, SearchInputProps } from "./SearchInput";
 import { NutrientList } from "./NutrientList";
 import { EditPlan } from "./EditPlan";
 import { Container } from "./Container";
 import { SearchResults } from "./SearchResults";
-import { Delete as DeleteIcon } from "@material-ui/icons";
 import { useUniqueContainer } from "../hooks/useUniqueContainer";
 import { isFoodEqual } from "../functions/isFoodEqual";
+import { MyFoodList } from "./MyFoodList";
 
 export type AppProps = {
   theme: Theme;
@@ -47,22 +40,7 @@ export const App = ({ theme, search }: AppProps) => {
               />
             )}
           </SearchInput>
-          <List>
-            {myFood.map((food, index) => (
-              <ListItem key={index}>
-                <ListItemText primary={food.name} />
-                <ListItemSecondaryAction>
-                  <IconButton
-                    edge="end"
-                    aria-label="delete"
-                    onClick={() => removeFood(food)}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            ))}
-          </List>
+          <MyFoodList items={myFood} onRemove={removeFood} />
           <NutrientList />
           <EditPlan />
         </Container>
