@@ -1,5 +1,6 @@
 # Nutrition Planner
 An app that helps you find food that fits your desired diet and summarize their nutrients compared to your goals.
+Built with [React](https://reactjs.org/), [Material-UI](https://material-ui.com/) and uses [Nutritionix](https://www.nutritionix.com/) as API.
 
 # Concepts
 - Food
@@ -11,18 +12,18 @@ Notable files and folders and what their purpose is.
 > For more information about a file see the comments in the file
 
 - `src/index.tsx` application entry point
-- `src/api` API types and functions
+- `src/api` API types and functions. Interfaces with [Nutritionix](https://www.nutritionix.com/).
 - `src/api/lookup` Mirrors API operations specified in the [Food Lookup Endpoints](https://docs.google.com/document/d/1_q-K-ObMTZvO0qUEAxROrN3bwMujwAN25sLHwJzliK0/edit#heading=h.84ciec341szv) section of the Nutritionix documentation
-- `src/api/custom` Custom API operations that make sense for the application
+- `src/api/custom` Custom API operations that serve the application
 - `src/api/types` Mirrors the types we use from the Nutritionix API
 - `src/components` react components
 - `src/fixtures` static data
 - `src/functions` pure functions, often helpers to derive or operate on state
 - `src/hooks` react hooks
-- `src/state` types and classes used as application state
+- `src/state` types used as application state
 - `src/types` typescript declaration files
 
-# Getting Started with Create React App
+# Bootstrapped with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
