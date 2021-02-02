@@ -1,3 +1,8 @@
+import { NixItemId } from "./NixItemId";
+
+/**
+ * Represents the items in the `branded` property returned from the nutritionix API /v2/search/instant
+ */
 export type BrandedFood = {
   food_name: string;
   image: string;
@@ -8,5 +13,5 @@ export type BrandedFood = {
   nf_calories: 560;
   brand_name: string;
   brand_type: number;
-  nix_item_id: string;
+  nix_item_id: NixItemId;
 };
