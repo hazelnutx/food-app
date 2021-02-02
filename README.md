@@ -19,22 +19,22 @@ I have created [github issues](https://github.com/ksandin/food-app/milestone/3) 
 
 # Caveats
 
-## Semantics over optimization
+### Semantics over optimization
 Theoretically optimal react components should memoize callbacks to make
 sure the React reconciler only updates when necessary. This can lead to very verbose code,
 so when performance is not a problem I prefer to prioritize semantic code and skip memoizing,
 which you see me do all over this project.
 
-## Excessive non-batched API requests
+### Excessive non-batched API requests
 In searchForFoods I am performing multiple API calls and composing the results into a convenient
 rich client side data structure. This consumes our rate limit quicker than necessary,
 but it was a very cheap design in terms of development, which I decided was okay for the goals of this project.
 
-## No API proxy
+### No API proxy
 As the test instruction had no server side requirement I did not develop an API proxy to 
 hold the API keys. The keys are instead injected into the frontend application via environment variables, which is a bad practice.
 
-## No tests
+### No tests
 As the test was small (4-8 hours expected, and I went for an app size requiring ~16 hours), there was no room for doing TDD.
 I did however prepare architecture for tests and test coverage.
 
@@ -73,7 +73,7 @@ REACT_APP_NUTRITIONIX_APP_KEY=your_app_key
 
 In the project directory, you can run:
 
-## `yarn start`
+### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -81,12 +81,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-## `yarn test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## `yarn build`
+### `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -96,7 +96,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## `yarn eject`
+### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
