@@ -18,6 +18,7 @@ import { MyFoodList } from "./MyFoodList";
 import { ExpandMore as ExpandMoreIcon } from "@material-ui/icons";
 import { summarizeNutrients } from "../functions/summarizeNutrients";
 import { insertNetCarbs } from "../functions/insertNetCarbs";
+import { PoweredBy } from "./PoweredBy";
 
 export type AppProps = {
   theme: Theme;
@@ -36,6 +37,8 @@ export const App = ({ theme, search }: AppProps) => {
       <MuiThemeProvider theme={theme}>
         <GlobalStyle />
         <Container>
+          <PoweredBy />
+
           <SearchInput label="Search food or brand" search={search}>
             {({ closePopper, clearInput, ...props }) => (
               <SearchResults
