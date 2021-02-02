@@ -14,6 +14,7 @@ import {
 import { Food } from "../state/Food";
 import { describeServing } from "../functions/describeServing";
 import { offsetFoodQuantity } from "../functions/offsetFoodQuantity";
+import styled from "styled-components";
 
 export type MyFoodListProps = {
   items: Food[];
@@ -28,7 +29,10 @@ export const MyFoodList = ({ items, onRemove, onUpdate }: MyFoodListProps) => (
   <List>
     {items.map((food, index) => (
       <ListItem key={index}>
-        <ListItemText primary={food.name} secondary={describeServing(food)} />
+        <ListItemTextWithEllipsis
+          primary={food.name}
+          secondary={describeServing(food)}
+        />
         <ListItemSecondaryAction>
           <Tooltip title="Decrease quantity">
             <IconButton
@@ -59,3 +63,21 @@ export const MyFoodList = ({ items, onRemove, onUpdate }: MyFoodListProps) => (
     ))}
   </List>
 );
+
+/**
+ * The default right side padding for list items with actions assume you have one action.
+ * Since we add three actions we need to increase the padding to get the proper size on the text area.
+ */
+const ListItemTextWithEllipsis = styled(ListItemText)`
+  // One button is 48px wide, we have added 2 on top of the
+  // built in padding for 1 which means we need 96px extra spacing
+  max-width: calc(100% - 96px);
+
+  .MuiListItemText-primary,
+  .MuiListItemText-secondary {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
+  }
+`;
