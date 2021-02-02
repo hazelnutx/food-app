@@ -1,5 +1,7 @@
 /**
- * API convention (convenience method)
+ * API convention.
+ *
+ * All api calls go through this function.
  */
 export const apiCall = async <T>(
   operation: string,
