@@ -31,7 +31,13 @@ export type RichFood = {
   metadata: unknown;
   source: number;
   ndb_no: number;
-  tags: unknown;
+  tags: {
+    food_group: number;
+    item: string;
+    measure: unknown;
+    quantity: string;
+    tag_id: number;
+  };
   alt_measures: unknown;
   photo: Photo;
 };
