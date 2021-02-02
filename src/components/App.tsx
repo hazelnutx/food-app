@@ -32,7 +32,10 @@ export type AppProps = {
  * The root of the react application.
  */
 export const App = ({ theme, search }: AppProps) => {
-  const [myFood, addFood, removeFood] = useUniqueContainer([], isFoodEqual);
+  const [myFood, addFood, removeFood, updateFood] = useUniqueContainer(
+    [],
+    isFoodEqual
+  );
   let nutrients = insertNetCarbs(summarizeNutrients(myFood));
 
   return (
@@ -58,7 +61,12 @@ export const App = ({ theme, search }: AppProps) => {
               )}
             </SearchInput>
 
-            <MyFoodList items={myFood} onRemove={removeFood} />
+            <MyFoodList
+              items={myFood}
+              onRemove={removeFood}
+              onUpdate={updateFood}
+            />
+
             {nutrients.length > 0 && (
               <Accordion>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
