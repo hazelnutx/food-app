@@ -14,6 +14,9 @@ Apart from satisfying the test instructions I set these goals for myself:
 - [x] Good separation of concerns
 - [x] Demonstration of workflow in github issues
 
+# Improvements
+I have created [github issues](https://github.com/ksandin/food-app/milestone/3) describing several technical and user experience improvements that can and should be made for an app like this.
+
 # Caveats
 
 ## Semantics over optimization
@@ -27,6 +30,13 @@ In searchForFoods I am performing multiple API calls and composing the results i
 rich client side data structure. This consumes our rate limit quicker than necessary,
 but it was a very cheap design in terms of development, which I decided was okay for the goals of this project.
 
+## No API proxy
+As the test instruction had no server side requirement I did not develop an API proxy to 
+hold the API keys. The keys are instead injected into the frontend application via environment variables, which is a bad practice.
+
+## No tests
+As the test was small (4-8 hours expected, and I went for an app size requiring ~16 hours), there was no room for doing TDD.
+I did however prepare architecture for tests and test coverage.
 
 # Project structure
 A conventional CRA, with `index.tsx` being the entry point.
