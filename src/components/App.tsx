@@ -1,6 +1,6 @@
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
-import { Theme } from "../Theme";
+import { Theme } from "../state/Theme";
 import { MuiThemeProvider } from "@material-ui/core";
 import { SearchInput, SearchInputProps } from "./SearchInput";
 import { NutrientList } from "./NutrientList";

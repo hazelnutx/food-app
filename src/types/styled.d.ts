@@ -1,5 +1,5 @@
 import "styled-components";
-import { Theme } from "../Theme";
+import { Theme } from "../state/Theme";
 
 // Type augmentation to make styled-components use our applications Theme type
 

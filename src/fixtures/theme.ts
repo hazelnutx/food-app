@@ -1,4 +1,4 @@
-import { Theme } from "../Theme";
+import { Theme } from "../state/Theme";
 import { createMuiTheme } from "@material-ui/core";
 
 /**
