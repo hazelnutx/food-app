@@ -3,12 +3,14 @@ import { Food } from "../state/Food";
 import {
   List,
   ListItem,
+  ListItemSecondaryAction,
   ListItemText,
   Paper,
   Typography,
 } from "@material-ui/core";
 import styled from "styled-components";
 import { describeServing } from "../functions/describeServing";
+import { Add as AddIcon } from "@material-ui/icons";
 
 export type SearchResultsProps = Pick<
   RenderSearchResultsProps,
@@ -57,6 +59,9 @@ export const SearchResults = ({
               primary={item.name}
               secondary={describeServing(item)}
             />
+            <Action>
+              <AddIcon />
+            </Action>
           </ListItem>
         ))}
       </List>
@@ -79,4 +84,11 @@ const SearchResultsContainer = styled(Paper)`
  */
 const FallbackText = styled(Typography)`
   padding: 16px 18px;
+`;
+
+/**
+ * Disable pointer events so action surface doesn't interrupt ListItem mouse effects
+ */
+const Action = styled(ListItemSecondaryAction)`
+  pointer-events: none;
 `;
