@@ -10,8 +10,10 @@ import { CommonFood } from "../types/CommonFood";
  */
 export const searchForFoods = async (
   query: string,
-  limit = 5
+  limit = 5,
+  ...rest: any[]
 ): Promise<Food[]> => {
+  console.log("searchForFoods", [query, limit, ...rest]);
   const all = await searchInstant(query);
 
   // Limit the number of foods we select to

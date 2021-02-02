@@ -32,7 +32,9 @@ export const SearchResults = ({
   searchingText,
   emptyText,
 }: SearchResultsProps) => {
-  if (searching) {
+  // Since we use SWR we might be searching while a stale result is available,
+  // so only show the searching text when we have no results to display also.
+  if (searching && (!items || items.length === 0)) {
     return (
       <SearchResultsContainer>
         <FallbackText>{searchingText}</FallbackText>

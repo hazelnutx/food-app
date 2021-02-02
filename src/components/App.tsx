@@ -19,9 +19,12 @@ import { ExpandMore as ExpandMoreIcon } from "@material-ui/icons";
 import { summarizeNutrients } from "../functions/summarizeNutrients";
 import { insertNetCarbs } from "../functions/insertNetCarbs";
 import { PoweredBy } from "./PoweredBy";
+import { ConfigInterface, SWRConfig } from "swr";
+import { swrConfig } from "../fixtures/swrConfig";
 
 export type AppProps = {
   theme: Theme;
+  swrConfig: ConfigInterface;
   search: SearchInputProps["search"];
 };
 
@@ -35,37 +38,39 @@ export const App = ({ theme, search }: AppProps) => {
   return (
     <StyledThemeProvider theme={theme}>
       <MuiThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Container>
-          <PoweredBy />
+        <SWRConfig value={swrConfig}>
+          <GlobalStyle />
+          <Container>
+            <PoweredBy />
 
-          <SearchInput label="Search food or brand" search={search}>
-            {({ closePopper, clearInput, ...props }) => (
-              <SearchResults
-                {...props}
-                searchingText="Searching..."
-                emptyText="No results"
-                onFoodSelected={(food) => {
-                  addFood(food);
-                  closePopper();
-                  clearInput();
-                }}
-              />
+            <SearchInput label="Search food or brand" search={search}>
+              {({ closePopper, clearInput, ...props }) => (
+                <SearchResults
+                  {...props}
+                  searchingText="Searching..."
+                  emptyText="No results"
+                  onFoodSelected={(food) => {
+                    addFood(food);
+                    closePopper();
+                    clearInput();
+                  }}
+                />
+              )}
+            </SearchInput>
+
+            <MyFoodList items={myFood} onRemove={removeFood} />
+            {nutrients.length > 0 && (
+              <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography>Nutrition Summary</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <NutrientTable items={nutrients} />
+                </AccordionDetails>
+              </Accordion>
             )}
-          </SearchInput>
-
-          <MyFoodList items={myFood} onRemove={removeFood} />
-          {nutrients.length > 0 && (
-            <Accordion>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>Nutrition Summary</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <NutrientTable items={nutrients} />
-              </AccordionDetails>
-            </Accordion>
-          )}
-        </Container>
+          </Container>
+        </SWRConfig>
       </MuiThemeProvider>
     </StyledThemeProvider>
   );

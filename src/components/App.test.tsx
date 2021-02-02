@@ -1,12 +1,12 @@
 import { render } from "@testing-library/react";
 import { App } from "./App";
 import { theme } from "../fixtures/theme";
+import { swrConfig } from "../fixtures/swrConfig";
 
 it("can render App without throwing immediately", () => {
-  expect(() => render(<App theme={theme} search={search} />)).not.toThrow();
+  expect(() =>
+    render(<App theme={theme} swrConfig={swrConfig} search={empty} />)
+  ).not.toThrow();
 });
 
-const search = async (query: string) =>
-  [{ name: "foo" }, { name: "bar" }, { name: "baz" }].filter(
-    (food) => food.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
-  );
+const empty = async () => [];

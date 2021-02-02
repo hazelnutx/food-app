@@ -7,8 +7,8 @@ import {
   TextField,
 } from "@material-ui/core";
 import { Food } from "../state/Food";
-import { useMountState } from "../hooks/useMountState";
 import styled from "styled-components";
+import useSWR from "swr/esm";
 
 export type SearchInputProps = {
   /**
@@ -63,70 +63,49 @@ export const SearchInput = ({
   children: renderSearchResults,
 }: SearchInputProps) => {
   // State
-  const [query, setQuery] = useState("");
+
+  // The difference between displayedQuery and searchQuery is that
+  // displayedQuery is always immediately representing what is in the search text field,
+  // while searchQuery is debounced and will only have its value updated as the debounce timer expires.
+  const [displayedQuery, setDisplayedQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const { data: searchResults = [], isValidating: isSearching } = useSWR(
+    searchQuery,
+    search
+  );
   const [isFocused, setFocused] = useState(false);
-  const [searchResults, setSearchResults] = useState<Food[]>();
-  const [isSearching, setSearching] = useState(false);
   const textFieldRef = useRef(null);
-  const mountState = useMountState();
 
   // Semantics
-  const hasQuery = !!query;
+  const hasQuery = !!searchQuery;
   const showResults = isFocused && hasQuery;
   const focus = () => setFocused(true);
   const blur = () => setFocused(false);
   const clearInput = () => setQuery("");
 
   // Operations
-
-  // Debounce to not search while typing fast
-  const performSearchMemoized = useCallback(
-    async (newQuery: string) => {
-      let items: Food[] = [];
-
-      // Ignore empty text fields
-      if (newQuery) {
-        setSearching(true);
-        try {
-          items = await search(newQuery);
-        } catch (e) {
-          // noop, assume happy case,
-          // error will reset results to []
-        }
-      }
-
-      // Don't set state on unmounted components
-      if (mountState.isMounted) {
-        setSearching(false);
-        setSearchResults(items);
-      }
-    },
-    [search, mountState]
-  );
+  const setQuery = (query: string) => {
+    setDisplayedQuery(query);
+    setSearchQueryDebounced(query);
+  };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const performSearchDebounced = useCallback(
+  const setSearchQueryDebounced = useCallback(
     // We know that debounce returns a function with the same dependencies, which is why we disable the above rule
-    debounce(performSearchMemoized, searchDebounceWait),
-    [performSearchMemoized, searchDebounceWait]
+    debounce(setSearchQuery, searchDebounceWait),
+    [searchDebounceWait]
   );
-
-  // Try to search every time we set the query
-  const setQueryAndSearch = (newQuery: string) => {
-    setQuery(newQuery);
-    performSearchDebounced(newQuery);
-  };
 
   return (
     <ClickAwayListener onClickAway={blur}>
       <div>
         <SearchTextField
           ref={textFieldRef}
-          value={query}
+          value={displayedQuery}
           onFocus={focus}
           label={label}
           variant="outlined"
-          onChange={(e) => setQueryAndSearch(extractQuery(e.target.value))}
+          onChange={(e) => setQuery(extractQuery(e.target.value))}
           InputProps={{
             endAdornment: isSearching ? (
               <CircularProgress color="inherit" size={20} />
