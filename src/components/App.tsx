@@ -2,6 +2,7 @@ import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { Theme } from "../state/Theme";
 import {
+  Accordion,
   AccordionDetails,
   AccordionSummary,
   MuiThemeProvider,
@@ -15,7 +16,6 @@ import { useUniqueContainer } from "../hooks/useUniqueContainer";
 import { isFoodEqual } from "../functions/isFoodEqual";
 import { MyFoodList } from "./MyFoodList";
 import { ExpandMore as ExpandMoreIcon } from "@material-ui/icons";
-import { AccordionForTable } from "./AccordionForTable";
 import { summarizeNutrients } from "../functions/summarizeNutrients";
 import { insertNetCarbs } from "../functions/insertNetCarbs";
 
@@ -53,14 +53,14 @@ export const App = ({ theme, search }: AppProps) => {
 
           <MyFoodList items={myFood} onRemove={removeFood} />
           {nutrients.length > 0 && (
-            <AccordionForTable>
+            <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>Nutrition Summary</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <NutrientTable items={nutrients} />
               </AccordionDetails>
-            </AccordionForTable>
+            </Accordion>
           )}
         </Container>
       </MuiThemeProvider>
