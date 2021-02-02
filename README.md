@@ -1,14 +1,39 @@
 # Nutrition Planner
-An app that helps you find food that fits your desired diet and summarize their nutrients compared to your goals.
+An app that helps you find food that fits your desired diet.
 Built with [React](https://reactjs.org/), [Material-UI](https://material-ui.com/) and uses [Nutritionix](https://www.nutritionix.com/) as API.
 
-# Concepts
-- Food
-- Nutrients
-- Plans
+> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+![screenshot](https://github.com/ksandin/food-app/blob/main/docs/screenshot.png?raw=true)
+
+# Goals
+Apart from satisfying the test instructions I set these goals for myself:
+
+- [x] Every module needs to be documented.
+- [x] Easy to understand structure
+- [x] Good separation of concerns
+- [x] Demonstration of workflow in github issues
+
+# Caveats
+
+## Semantics over optimization
+Theoretically optimal react components should memoize callbacks to make
+sure the React reconciler only updates when necessary. This can lead to very verbose code,
+so when performance is not a problem I prefer to prioritize semantic code and skip memoizing,
+which you see me do all over this project.
+
+## Excessive non-batched API requests
+In searchForFoods I am performing multiple API calls and composing the results into a convenient
+rich client side data structure. This consumes our rate limit quicker than necessary,
+but it was a very cheap design in terms of development, which I decided was okay for the goals of this project.
+
 
 # Project structure
-Notable files and folders and what their purpose is.
+A conventional CRA, with `index.tsx` being the entry point.
+`index.tsx` renders the app once, `src/components/App` being the root component, and react keeps it running.
+ 
+Notable files and folders and what their purpose is:
+
 > For more information about a file see the comments in the file
 
 - `src/index.tsx` application entry point
@@ -22,16 +47,23 @@ Notable files and folders and what their purpose is.
 - `src/hooks` react hooks
 - `src/state` types used as application state
 - `src/types` typescript declaration files
+- `design` design documents (mostly screenshots from other apps to use as inspiration)
 
-# Bootstrapped with Create React App
+# Prerequisites
+To run the app you need to configure a Nutritionix `app id` and `app key`.
+These can be retrieved by registering at [developer.nutritionix.com](https://developer.nutritionix.com/) and going to the page `View API Keys`.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Copy `.env.example` to `.env` and add your app id and app key to the `.env` file:
+```
+REACT_APP_NUTRITIONIX_APP_ID=your_app_id
+REACT_APP_NUTRITIONIX_APP_KEY=your_app_key
+```
 
-## Available Scripts
+# Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+## `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -39,12 +71,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `yarn test`
+## `yarn test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+## `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -54,7 +86,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -63,9 +95,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
