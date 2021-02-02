@@ -1,7 +1,12 @@
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { Theme } from "../state/Theme";
-import { MuiThemeProvider } from "@material-ui/core";
+import {
+  AccordionDetails,
+  AccordionSummary,
+  MuiThemeProvider,
+  Typography,
+} from "@material-ui/core";
 import { SearchInput, SearchInputProps } from "./SearchInput";
 import { NutrientList } from "./NutrientList";
 import { EditPlan } from "./EditPlan";
@@ -10,6 +15,8 @@ import { SearchResults } from "./SearchResults";
 import { useUniqueContainer } from "../hooks/useUniqueContainer";
 import { isFoodEqual } from "../functions/isFoodEqual";
 import { MyFoodList } from "./MyFoodList";
+import { ExpandMore as ExpandMoreIcon } from "@material-ui/icons";
+import { AccordionForList } from "./AccordionForList";
 
 export type AppProps = {
   theme: Theme;
@@ -40,8 +47,18 @@ export const App = ({ theme, search }: AppProps) => {
               />
             )}
           </SearchInput>
+
           <MyFoodList items={myFood} onRemove={removeFood} />
-          <NutrientList />
+          {myFood.length > 0 && (
+            <AccordionForList>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>Nutrition Summary</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <NutrientList />
+              </AccordionDetails>
+            </AccordionForList>
+          )}
           <EditPlan />
         </Container>
       </MuiThemeProvider>
