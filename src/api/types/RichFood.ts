@@ -1,4 +1,5 @@
 import { Photo } from "./Photo";
+import { NixNutrient } from "./NixNutrient";
 
 /**
  * Represents the items returned from the nutritionix APIs /v2/search/instant or /v2/natural/nutrients
@@ -8,7 +9,7 @@ export type RichFood = {
   brand_name: string;
   serving_qty: number;
   serving_unit: string;
-  serving_weight_grams: null;
+  serving_weight_grams?: number;
   nf_calories: number;
   nf_total_fat: number;
   nf_saturated_fat: number;
@@ -20,10 +21,7 @@ export type RichFood = {
   nf_protein: number;
   nf_potassium: number;
   nf_p: number;
-  full_nutrients: Array<{
-    attr_id: number;
-    value: number;
-  }>;
+  full_nutrients: NixNutrient[];
   nix_brand_name: string;
   nix_brand_id: string;
   nix_item_name: string;

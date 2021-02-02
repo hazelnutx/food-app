@@ -1,15 +1,24 @@
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { Theme } from "../state/Theme";
-import { MuiThemeProvider } from "@material-ui/core";
+import {
+  AccordionDetails,
+  AccordionSummary,
+  MuiThemeProvider,
+  Typography,
+} from "@material-ui/core";
 import { SearchInput, SearchInputProps } from "./SearchInput";
-import { NutrientList } from "./NutrientList";
+import { NutrientTable } from "./NutrientTable";
 import { EditPlan } from "./EditPlan";
 import { Container } from "./Container";
 import { SearchResults } from "./SearchResults";
 import { useUniqueContainer } from "../hooks/useUniqueContainer";
 import { isFoodEqual } from "../functions/isFoodEqual";
 import { MyFoodList } from "./MyFoodList";
+import { ExpandMore as ExpandMoreIcon } from "@material-ui/icons";
+import { AccordionForTable } from "./AccordionForTable";
+import { summarizeNutrients } from "../functions/summarizeNutrients";
+import { insertNetCarbs } from "../functions/insertNetCarbs";
 
 export type AppProps = {
   theme: Theme;
@@ -21,6 +30,8 @@ export type AppProps = {
  */
 export const App = ({ theme, search }: AppProps) => {
   const [myFood, addFood, removeFood] = useUniqueContainer([], isFoodEqual);
+  let nutrients = insertNetCarbs(summarizeNutrients(myFood));
+
   return (
     <StyledThemeProvider theme={theme}>
       <MuiThemeProvider theme={theme}>
@@ -40,8 +51,18 @@ export const App = ({ theme, search }: AppProps) => {
               />
             )}
           </SearchInput>
+
           <MyFoodList items={myFood} onRemove={removeFood} />
-          <NutrientList />
+          {nutrients.length > 0 && (
+            <AccordionForTable>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>Nutrition Summary</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <NutrientTable items={nutrients} />
+              </AccordionDetails>
+            </AccordionForTable>
+          )}
           <EditPlan />
         </Container>
       </MuiThemeProvider>
