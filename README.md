@@ -12,6 +12,9 @@ Notable files and folders and what their purpose is.
 
 - `src/index.tsx` application entry point
 - `src/api` API types and functions
+- `src/api/lookup` Mirrors API operations specified in the [Food Lookup Endpoints](https://docs.google.com/document/d/1_q-K-ObMTZvO0qUEAxROrN3bwMujwAN25sLHwJzliK0/edit#heading=h.84ciec341szv) section of the Nutritionix documentation
+- `src/api/custom` Custom API operations that make sense for the application
+- `src/api/types` Mirrors the types we use from the Nutritionix API
 - `src/components` react components
 - `src/fixtures` static data
 - `src/functions` pure functions, often helpers to derive or operate on state
