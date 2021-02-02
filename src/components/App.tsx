@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 import { SearchInput, SearchInputProps } from "./SearchInput";
 import { NutrientTable } from "./NutrientTable";
-import { EditPlan } from "./EditPlan";
 import { Container } from "./Container";
 import { SearchResults } from "./SearchResults";
 import { useUniqueContainer } from "../hooks/useUniqueContainer";
@@ -63,7 +62,6 @@ export const App = ({ theme, search }: AppProps) => {
               </AccordionDetails>
             </AccordionForTable>
           )}
-          <EditPlan />
         </Container>
       </MuiThemeProvider>
     </StyledThemeProvider>
