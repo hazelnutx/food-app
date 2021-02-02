@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import styled from "styled-components";
+import { describeServing } from "../functions/describeServing";
 
 export type SearchResultsProps = Pick<
   RenderSearchResultsProps,
@@ -52,7 +53,10 @@ export const SearchResults = ({
       <List>
         {items.map((item, index) => (
           <ListItem key={index} onClick={() => onFoodSelected(item)} button>
-            <ListItemText primary={item.name} />
+            <ListItemText
+              primary={item.name}
+              secondary={describeServing(item)}
+            />
           </ListItem>
         ))}
       </List>
