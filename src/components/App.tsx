@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { SearchInput, SearchInputProps } from "./SearchInput";
-import { NutrientList } from "./NutrientList";
+import { NutrientTable } from "./NutrientTable";
 import { EditPlan } from "./EditPlan";
 import { Container } from "./Container";
 import { SearchResults } from "./SearchResults";
@@ -16,7 +16,9 @@ import { useUniqueContainer } from "../hooks/useUniqueContainer";
 import { isFoodEqual } from "../functions/isFoodEqual";
 import { MyFoodList } from "./MyFoodList";
 import { ExpandMore as ExpandMoreIcon } from "@material-ui/icons";
-import { AccordionForList } from "./AccordionForList";
+import { AccordionForTable } from "./AccordionForTable";
+import { summarizeNutrients } from "../functions/summarizeNutrients";
+import { insertNetCarbs } from "../functions/insertNetCarbs";
 
 export type AppProps = {
   theme: Theme;
@@ -28,6 +30,8 @@ export type AppProps = {
  */
 export const App = ({ theme, search }: AppProps) => {
   const [myFood, addFood, removeFood] = useUniqueContainer([], isFoodEqual);
+  let nutrients = insertNetCarbs(summarizeNutrients(myFood));
+
   return (
     <StyledThemeProvider theme={theme}>
       <MuiThemeProvider theme={theme}>
@@ -49,15 +53,15 @@ export const App = ({ theme, search }: AppProps) => {
           </SearchInput>
 
           <MyFoodList items={myFood} onRemove={removeFood} />
-          {myFood.length > 0 && (
-            <AccordionForList>
+          {nutrients.length > 0 && (
+            <AccordionForTable>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>Nutrition Summary</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <NutrientList />
+                <NutrientTable items={nutrients} />
               </AccordionDetails>
-            </AccordionForList>
+            </AccordionForTable>
           )}
           <EditPlan />
         </Container>

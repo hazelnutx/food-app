@@ -1,4 +1,5 @@
 import { Photo } from "./Photo";
+import { NixNutrient } from "./NixNutrient";
 
 /**
  * Represents the items returned from the nutritionix APIs /v2/search/instant or /v2/natural/nutrients
@@ -20,10 +21,7 @@ export type RichFood = {
   nf_protein: number;
   nf_potassium: number;
   nf_p: number;
-  full_nutrients: Array<{
-    attr_id: number;
-    value: number;
-  }>;
+  full_nutrients: NixNutrient[];
   nix_brand_name: string;
   nix_brand_id: string;
   nix_item_name: string;
