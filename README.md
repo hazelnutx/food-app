@@ -6,6 +6,9 @@ Built with [React](https://reactjs.org/), [Material-UI](https://material-ui.com/
 
 ![screenshot](https://github.com/ksandin/food-app/blob/main/docs/screenshot.png?raw=true)
 
+# Time spent on MVP
+~16 hours (4 coding sessions, ~4 hours each, from project start until 2021-02-03)
+
 # Goals
 Apart from satisfying the test instructions I set these goals for myself:
 
