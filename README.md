@@ -1,5 +1,5 @@
 # Nutrition Planner
-An app that helps you find food that fits your desired diet.
+An app that helps you find food that fits your diet.
 Built with [React](https://reactjs.org/), [Material-UI](https://material-ui.com/) and uses [Nutritionix](https://www.nutritionix.com/) as API.
 
 > This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -26,7 +26,7 @@ so when performance is not a problem I prefer to prioritize semantic code and sk
 which you see me do all over this project.
 
 ### Excessive non-batched API requests
-In searchForFoods I am performing multiple API calls and composing the results into a convenient
+In [searchForFoods.ts](src/api/custom/searchForFoods.ts) I am performing multiple API calls and composing the results into a convenient
 rich client side data structure. This consumes our rate limit quicker than necessary,
 but it was a very cheap design in terms of development, which I decided was okay for the goals of this project.
 
@@ -34,8 +34,8 @@ but it was a very cheap design in terms of development, which I decided was okay
 As the test instruction had no server side requirement I did not develop an API proxy to 
 hold the API keys. The keys are instead injected into the frontend application via environment variables, which is a bad practice.
 
-### No tests
-As the test was small (4-8 hours expected, and I went for an app size requiring ~16 hours), there was no room for doing TDD.
+### No unit tests
+As the test instruction had a small scope there was no room for doing TDD (Or at least I prioritized other goals than TDD).
 I did however prepare architecture for tests and test coverage.
 
 # Project structure
@@ -68,6 +68,12 @@ Copy `.env.example` to `.env` and add your app id and app key to the `.env` file
 REACT_APP_NUTRITIONIX_APP_ID=your_app_id
 REACT_APP_NUTRITIONIX_APP_KEY=your_app_key
 ```
+
+# Getting started
+1. Clone this repository
+2. Run `yarn install`
+3. Make sure you have configured your `.env` (see above)
+4. Run `yarn start`
 
 # Available Scripts
 
