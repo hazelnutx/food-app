@@ -35,21 +35,25 @@ export const MyFoodList = ({ items, onRemove, onUpdate }: MyFoodListProps) => (
         />
         <ListItemSecondaryAction>
           <Tooltip title="Decrease quantity">
-            <IconButton
-              aria-label="decrease quantity"
-              disabled={food.servingQuantity <= 1}
-              onClick={() => onUpdate(food, offsetFoodQuantity(food, -1))}
-            >
-              <MinusIcon />
-            </IconButton>
+            <span>
+              <IconButton
+                aria-label="decrease quantity"
+                disabled={food.servingQuantity <= 1}
+                onClick={() => onUpdate(food, offsetFoodQuantity(food, -1))}
+              >
+                <MinusIcon />
+              </IconButton>
+            </span>
           </Tooltip>
           <Tooltip title="Increase quantity">
-            <IconButton
-              aria-label="increase quantity"
-              onClick={() => onUpdate(food, offsetFoodQuantity(food, 1))}
-            >
-              <PlusIcon />
-            </IconButton>
+            <span>
+              <IconButton
+                aria-label="increase quantity"
+                onClick={() => onUpdate(food, offsetFoodQuantity(food, 1))}
+              >
+                <PlusIcon />
+              </IconButton>
+            </span>
           </Tooltip>
           <IconButton
             edge="end"
