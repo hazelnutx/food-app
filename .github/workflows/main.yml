@@ -29,10 +29,10 @@ jobs:
       - name: Install Packages
         run: npm install
       - name: Build React App
-        run: | 
-          REACT_APP_NUTRITIONIX_APP_ID=${{ secrets.nutritionix_app_id }}
-          REACT_APP_NUTRITIONIX_APP_KEY=${{ secrets.nutritionix_app_key }}
-          npm run build
+        env:
+          REACT_APP_NUTRITIONIX_APP_ID: ${{ secrets.nutritionix_app_id }}
+          REACT_APP_NUTRITIONIX_APP_KEY: ${{ secrets.nutritionix_app_key }}
+        run: npm run build
       - uses: dswistowski/surge-sh-action@v1.0.1
         id: deploy_to_surge
         with:
