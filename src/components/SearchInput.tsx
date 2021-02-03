@@ -86,7 +86,7 @@ export const SearchInput = ({
   // Operations
   const setQuery = (query: string) => {
     setDisplayedQuery(query);
-    setSearchQueryDebounced(query);
+    setSearchQueryDebounced(extractQuery(query));
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -105,7 +105,7 @@ export const SearchInput = ({
           onFocus={focus}
           label={label}
           variant="outlined"
-          onChange={(e) => setQuery(extractQuery(e.target.value))}
+          onChange={(e) => setQuery(e.target.value)}
           InputProps={{
             endAdornment: isSearching ? (
               <CircularProgress color="inherit" size={20} />
