@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import { Food } from "../state/Food";
 import styled from "styled-components";
-import useSWR from "swr/esm";
+import useSWR from "swr";
 
 export type SearchInputProps = {
   /**
